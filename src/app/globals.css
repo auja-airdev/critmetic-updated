@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@import "canvas-ui-sdk/tailwind";
+@import "canvas-ui-sdk/styles";
+@source "../../node_modules/canvas-ui-sdk/dist";
 
 :root {
   --background: #ffffff;
