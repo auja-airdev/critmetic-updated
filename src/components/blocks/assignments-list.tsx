@@ -49,6 +49,24 @@ const defaultAssignments: AssignmentItem[] = [
 // Assignment Row
 // ============================================
 
+function DotPattern() {
+  return (
+    <svg viewBox="0 0 80 60" className="w-20 h-15 opacity-30" style={{ color: "var(--canvas-neutral-text)" }}>
+      {Array.from({ length: 5 }).map((_, row) =>
+        Array.from({ length: 7 }).map((_, col) => (
+          <circle
+            key={`${row}-${col}`}
+            cx={col * 12 + 6}
+            cy={row * 12 + 6}
+            r="2.5"
+            fill="currentColor"
+          />
+        ))
+      )}
+    </svg>
+  );
+}
+
 function AssignmentRow({
   assignment,
   onClick,
@@ -64,10 +82,10 @@ function AssignmentRow({
         "rounded-[var(--radius-md)] border border-[var(--canvas-border)]",
         "p-[var(--spacing-xl)]",
         "bg-[var(--canvas-surface)] hover:bg-[var(--canvas-neutral-surface)]",
-        "transition-colors text-left"
+        "transition-colors text-left overflow-hidden relative"
       )}
     >
-      <div className="flex flex-col gap-[var(--spacing-sm)]">
+      <div className="flex flex-col gap-[var(--spacing-sm)] relative z-10">
         <Typography variant="body-m" style={{ fontWeight: 600 }}>
           {assignment.title}
         </Typography>
@@ -113,7 +131,10 @@ function AssignmentRow({
           </span>
         </div>
       </div>
-      <ChevronRight className="size-5 shrink-0" style={{ color: "var(--canvas-neutral-text)" }} />
+      <div className="flex items-center gap-[var(--spacing-lg)] shrink-0 relative z-10">
+        <DotPattern />
+        <ChevronRight className="size-5" style={{ color: "var(--canvas-neutral-text)" }} />
+      </div>
     </button>
   );
 }

@@ -27,23 +27,13 @@ export interface AnnouncementsCardProps {
 // Default Data
 // ============================================
 
-const defaultAnnouncements: Announcement[] = [
-  {
-    id: "1",
-    title: "Assignments Due Early",
-    description: "Remember that Module 5 assignments must be submitted before the deadline.",
-  },
-  {
-    id: "2",
-    title: "New Course Material",
-    description: "New reading materials have been added to Module 3. Please review before next class.",
-  },
-  {
-    id: "3",
-    title: "Office Hours Change",
-    description: "Office hours for this week have been moved to Thursday 2-4pm.",
-  },
-];
+const defaultAnnouncements: Announcement[] = Array.from({ length: 14 }, (_, i) => ({
+  id: String(i + 1),
+  title: i === 1 ? "Assignments Due Early" : `Announcement ${i + 1}`,
+  description: i === 1
+    ? "Remember that Module 5 assignm..."
+    : `This is announcement ${i + 1} with important information for students.`,
+}));
 
 // ============================================
 // Announcements Card
@@ -55,7 +45,7 @@ export function AnnouncementsCard({
   onDismiss,
   onDismissAll,
 }: AnnouncementsCardProps) {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(1);
 
   if (announcements.length === 0) return null;
 

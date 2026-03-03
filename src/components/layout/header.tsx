@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Search, Bell, ShoppingCart, Menu, User, LogOut, MessageSquare, X, Home, Info, LayoutGrid, type LucideIcon } from "lucide-react";
+import { Bell, Menu, User, LogOut, MessageSquare, X, Home, Info, LayoutGrid, Settings, Sun as LucideSun, Moon as LucideMoon, HelpCircle, type LucideIcon } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -703,17 +703,24 @@ export function Header({
 
         {/* Icons - Always Visible */}
         <div className="flex items-center gap-[var(--spacing-2xl)] ml-[var(--spacing-2xl)]">
+          {/* Get Help */}
           <button
-            className={`cursor-pointer transition-colors ${
+            className={`cursor-pointer transition-colors hidden lg:block ${
               isDark
                 ? "text-[var(--canvas-sidebar-dark-text)] hover:text-[var(--canvas-sidebar-dark-active-text)]"
                 : "text-[var(--canvas-neutral-text)] hover:text-[var(--canvas-text)]"
             }`}
-            aria-label="Search"
+            style={{
+              fontFamily: "var(--typo-body-s-font, var(--typo-global-font))",
+              fontSize: "var(--typo-body-s-size)",
+              fontWeight: 500,
+              lineHeight: "var(--typo-body-s-line-height)",
+            }}
           >
-            <Search className="size-4" />
+            Get Help
           </button>
-          
+
+          {/* Notifications Bell */}
           {isMounted ? (
             <Popover>
               <PopoverTrigger asChild>
@@ -745,67 +752,29 @@ export function Header({
             </button>
           )}
 
-          {isMounted ? (
-            <Popover>
-              <PopoverTrigger asChild>
-                <button
-                  className={`cursor-pointer transition-colors ${
-                    isDark
-                      ? "text-[var(--canvas-sidebar-dark-text)] hover:text-[var(--canvas-sidebar-dark-active-text)]"
-                      : "text-[var(--canvas-neutral-text)] hover:text-[var(--canvas-text)]"
-                  }`}
-                  aria-label="Messages"
-                >
-                  <MessageSquare className="size-4" />
-                </button>
-              </PopoverTrigger>
-              <PopoverContent align="end" sideOffset={16} className="w-auto p-[var(--spacing-xl)]">
-                <MessagesPopoverContent />
-              </PopoverContent>
-            </Popover>
-          ) : (
-            <button
-              className={`cursor-pointer transition-colors ${
-                isDark
-                  ? "text-[var(--canvas-sidebar-dark-text)] hover:text-[var(--canvas-sidebar-dark-active-text)]"
-                  : "text-[var(--canvas-neutral-text)] hover:text-[var(--canvas-text)]"
-              }`}
-              aria-label="Messages"
-            >
-              <MessageSquare className="size-4" />
-            </button>
-          )}
+          {/* Dark/Light Mode Toggle */}
+          <button
+            className={`cursor-pointer transition-colors ${
+              isDark
+                ? "text-[var(--canvas-sidebar-dark-text)] hover:text-[var(--canvas-sidebar-dark-active-text)]"
+                : "text-[var(--canvas-neutral-text)] hover:text-[var(--canvas-text)]"
+            }`}
+            aria-label="Toggle theme"
+          >
+            <LucideMoon className="size-4" />
+          </button>
 
-          {isMounted ? (
-            <Popover>
-              <PopoverTrigger asChild>
-                <button
-                  className={`cursor-pointer transition-colors ${
-                    isDark
-                      ? "text-[var(--canvas-sidebar-dark-text)] hover:text-[var(--canvas-sidebar-dark-active-text)]"
-                      : "text-[var(--canvas-neutral-text)] hover:text-[var(--canvas-text)]"
-                  }`}
-                  aria-label="Cart"
-                >
-                  <ShoppingCart className="size-4" />
-                </button>
-              </PopoverTrigger>
-              <PopoverContent align="end" sideOffset={16} className="w-auto p-[var(--spacing-xl)]">
-                <CartPopoverContent />
-              </PopoverContent>
-            </Popover>
-          ) : (
-            <button
-              className={`cursor-pointer transition-colors ${
-                isDark
-                  ? "text-[var(--canvas-sidebar-dark-text)] hover:text-[var(--canvas-sidebar-dark-active-text)]"
-                  : "text-[var(--canvas-neutral-text)] hover:text-[var(--canvas-text)]"
-              }`}
-              aria-label="Cart"
-            >
-              <ShoppingCart className="size-4" />
-            </button>
-          )}
+          {/* Settings Gear */}
+          <button
+            className={`cursor-pointer transition-colors ${
+              isDark
+                ? "text-[var(--canvas-sidebar-dark-text)] hover:text-[var(--canvas-sidebar-dark-active-text)]"
+                : "text-[var(--canvas-neutral-text)] hover:text-[var(--canvas-text)]"
+            }`}
+            aria-label="Settings"
+          >
+            <Settings className="size-4" />
+          </button>
           
           {/* Auth Buttons - Desktop Only */}
           {showAuthButtons && (

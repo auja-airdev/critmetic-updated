@@ -42,7 +42,7 @@ export default function StudentPortal() {
       </Typography>
 
       {/* Main Content Grid: Left (modules + assignments) / Right (announcements + feed) */}
-      <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-[var(--spacing-4xl)]">
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-[var(--spacing-4xl)]">
         {/* Left Column */}
         <div className="flex flex-col gap-[var(--spacing-4xl)]">
           <ModuleCards onSeeAll={() => {}} />
